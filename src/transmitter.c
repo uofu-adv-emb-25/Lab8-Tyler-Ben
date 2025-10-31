@@ -2,14 +2,18 @@
 #include <hardware/regs/intctrl.h>
 #include <stdio.h>
 #include <pico/stdlib.h>
+#include <FreeRTOS.h>
+#include <task.h>
+#include <queue.h>
 
 // Transmitter Code
 
 static struct can2040 cbus;
+uint16_t flipflop = 0;
 
 static void can2040_cb(struct can2040 *cd, uint32_t notify, struct can2040_msg *msg)
 {
-    printf("sent a message");
+    printf("sent a message\n");
 }
 
 static void PIOx_IRQHandler(void)
@@ -39,13 +43,17 @@ void canbus_setup(void)
 void transmit_task(__unused void *args)
 {
     struct can2040_msg msg;
-        msg.data = 0;
+        msg.data32[0] = 0;
         msg.dlc = 8;
         msg.id = 1;
     while(1)
     {
-        msg->data = msg->data + 1;
+        if(!flipflop) flipflop = (1<<15);
+        else flipflop = 0;
 
+        printf("%d\n", flipflop);
+        msg.data32[0] = flipflop;
+        msg.data32[1] = flipflop;
         can2040_transmit(&cbus, &msg);
         vTaskDelay(pdMS_TO_TICKS(500));
     }
