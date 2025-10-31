@@ -44,7 +44,11 @@ void transmit_noise_task(__unused void *args)
         int Tstatus = can2040_transmit(&cbus, &msg);
         if(Tstatus < 0)
         {
+<<<<<<< HEAD
             //printf("Failed to add message to buffer from noise, with data %d\n", msg.data32[1]);
+=======
+            // printf("Failed to add message to buffer from noise, with data %d", msg.data32[1]);
+>>>>>>> e0eccd9753cc5dcac8a9eaa50baeffb04fa20a00
         }
     }
 }
@@ -61,7 +65,11 @@ void transmit_data_task(__unused void *args)
         int Tstatus = can2040_transmit(&cbus, &msg);
         if(Tstatus < 0)
         {
+<<<<<<< HEAD
             printf("Failed to add message to buffer from noise, with data %d\n", msg.data32[1]);
+=======
+            // printf("Failed to add message to buffer from noise, with data %d", msg.data32[1]);
+>>>>>>> e0eccd9753cc5dcac8a9eaa50baeffb04fa20a00
         }
         vTaskDelay(pdMS_TO_TICKS(500));
     }
