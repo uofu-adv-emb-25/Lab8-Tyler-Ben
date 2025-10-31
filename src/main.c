@@ -18,7 +18,7 @@ uint8_t PICO_ID = 1;
 static void can2040_cb(struct can2040 *cd, uint32_t notify, struct can2040_msg *msg)
 {
     if (notify == CAN2040_NOTIFY_RX) {
-        xQueueSendToBack(msg_queue, msg, portMAX_DELAY);
+        xQueueSendToBackFromISR(msg_queue, msg, NULL);
     }
     else if (notify == CAN2040_NOTIFY_TX) {
         printf("sent a message\n");
@@ -43,7 +43,7 @@ void transmit_noise_task(__unused void *args)
         int Tstatus = can2040_transmit(&cbus, &msg);
         if(Tstatus < 0)
         {
-            printf("Failed to add message to buffer from noise, with data %d", msg.data32[1]);
+            // printf("Failed to add message to buffer from noise, with data %d", msg.data32[1]);
         }
     }
 }
@@ -61,8 +61,9 @@ void transmit_data_task(__unused void *args)
         int Tstatus = can2040_transmit(&cbus, &msg);
         if(Tstatus < 0)
         {
-            printf("Failed to add message to buffer from noise, with data %d", msg.data32[1]);
+            // printf("Failed to add message to buffer from noise, with data %d", msg.data32[1]);
         }
+        vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
 
