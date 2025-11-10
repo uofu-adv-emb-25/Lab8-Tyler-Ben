@@ -17,10 +17,12 @@ Pin 1: Txd    >  GPIO5 (PIN 7)
 Pin 2: Ground >  ground
 Pin 3: Power  >  5V
 Pin 4: Rxd    >  GPIO4 (PIN 6)
-Pin 5: Vio    >  3V3
+Pin 5: Vio    >  3V3 (works at 5V too)
 Pin 6: CANL   >  CANL
 Pin 7: CANH   >  CANH
 Pin 8: STBY   >  ground
+
+Also tie the ends of the bus (CANH and CANL) with 120-ohm resistors so that the bus impedence is 60-ohms
 
 # Activity 1 Discussion
 Observe the electrical behavior of the bus line and the microcontroller lines:

@@ -43,10 +43,10 @@ void canbus_setup(void)
 
 void main_task(__unused void *args)
 {
+    struct can2040_msg data;
     while(1) {
-        struct can2040_msg data;
         xQueueReceive(msg_queue, &data, portMAX_DELAY);
-        printf("Got message\n");
+        printf("Got message %d\n", data.data32[0]);
     }
 }
 
