@@ -60,4 +60,23 @@ Next, we introduced a short busy wait delay into the babbling node. We found tha
 We observed that the 'lower priority' message was able to be transmitted and received when the bus was idle.
 So after adding in even a short delay, we were able to observe the correct (ideal) behavior where the important data is not lost (starved).
 
-(insert image(s) here)
+[20251110_123429](https://github.com/user-attachments/assets/fc678b37-9111-4c4d-b2c2-5c2b2a72af1d)
+
+![20251110_123434](https://github.com/user-attachments/assets/2701e669-aee3-4424-ac60-07571e1a0c8c)
+
+![20251110_123438](https://github.com/user-attachments/assets/74897274-21a6-4665-b289-f244f0412440)
+
+![20251110_125100](https://github.com/user-attachments/assets/560db001-91e1-456e-91ba-7f402715c2b1)
+
+![20251110_125103](https://github.com/user-attachments/assets/54e442ad-30bd-40ee-ab2d-3f770aa0ae3f)
+
+![20251031_130511](https://github.com/user-attachments/assets/202c1fa8-8bc5-45ae-8193-2889ae4c51b4)
+
+![20251031_133426](https://github.com/user-attachments/assets/c0293e0a-b333-4836-b992-fd37b31a7625)
+
+
+
+
+
+
+
