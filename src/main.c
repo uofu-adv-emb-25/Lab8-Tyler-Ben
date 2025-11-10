@@ -15,6 +15,10 @@ QueueHandle_t msg_queue;
 // ID 1 is noise transmitter
 uint8_t PICO_ID = 1;
 
+// Change this value to adjust the delay (in ms) between sending noise on the CAN bus
+uint8_t NOISE_TASK_DELAY = 1;
+
+
 static void can2040_cb(struct can2040 *cd, uint32_t notify, struct can2040_msg *msg)
 {
     // printf("HERE, notify: %d, CAN2040_NOTIFY_TX: %d\n", notify, CAN2040_NOTIFY_TX);
@@ -46,10 +50,10 @@ void transmit_noise_task(__unused void *args)
         {
             can2040_transmit(&cbus, &msg);
         } else {
-            //printf("Failed to add message to buffer from noise, with data %d\n", msg.data32[1]);
+            printf("Failed to add message to buffer from noise, with data %d\n", msg.data32[1]);
         }
         
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(NOISE_TASK_DELAY)); 
     }
 }
 
